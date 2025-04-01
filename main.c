@@ -3,61 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/30 18:35:28 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/04/01 19:22:53 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(void)
+int main(int argc, char **argv, char **envp)
 {
-    char *input;
-
-    input = NULL;
-    while (1)
-    {
-        input = readline("minishell> ");
-        commands(input);
-    }
+	t_data	data;
+	char	*input;
+	
+	if (argc != 1)
+		return (printf("Error: Unexpected input.\n"));
+	alloc_init_data(&data, envp);
+	while (1)
+	{
+		input = readline("minishell> ");
+		if (strcmp(input, "exit") == 0)
+		{
+			printf("Exiting...\n");
+			exit(0);
+		}
+		else if (strchr(input, '$'))
+		{
+			if (is_env_var(strchr(input, '$'), data.env_var))
+				printf("minishell> %s\n", is_env_var(strchr(input, '$'), data.env_var));
+		}
+		free (input);
+	}
     return (0);
 }
 
-void    commands(char *input)
+void	alloc_init_data(t_data *data, char **envp)
 {
-    int valid;
-    t_command  *commands;
+	int	i;
+	int	len;
 
-    valid = -1;
-    commands = create_commands();
-    if (input == NULL)
-        return ;
-    parse_data(input, commands);
-    // printf("You entered: %s\n", input);
-    // // echo case
-    // valid = ft_strncmp(input, "echo", 4);
-    // ft_echo(input);
-    // // exit case
-    // valid = ft_strcmp(input, "exit");
-    // if (valid == 0)
-    // {
-    //     free(input);
-    //     exit(0);
-    // }
+	i = 0;
+	len = get_len_of_2d_array(envp);
+	data->env_var = (char **)malloc(sizeof(char *) * (len + 1));
+	while (envp[i])
+	{
+		if (!envp[i])
+		{
+			printf("Error: Malloc in *alloc_init_data envp[%d]* failed.\n", i);
+			exit(1);
+		}
+		data->env_var[i] = (char *)malloc(strlen(envp[i]) + 1);
+		strcpy(data->env_var[i], envp[i]);
+		i++;
+	}
+	data->env_var[i] = NULL;
 }
 
-// void    parse_data(char *input, t_command *commands)
-// {
-//     char    **temp_input;
-//     int     i;
+int	get_len_of_2d_array(char **array)
+{
+	int len;
 
-//     temp_input = ft_split(input, ' ');
-//     i = 0;
-//     while (temp_input[i])
-//     {
-//         if (ft_strncmp(temp_input, "echo", 4) == 0)
-//         i++;
-//     }
-// }
+	len = 0;
+	while (array[len])
+		len++;
+	return (len);
+}
+
+char	*is_env_var(char *input, char **envp)
+{
+	char	env_var[256];
+	int		i;
+	char	*result;
+	
+	i = 0;
+	result = NULL;
+	input++; // skip '$' sign
+	strncpy_until_char(env_var, input, '=');
+	while (envp[i])
+	{
+		if (strncmp(env_var, envp[i], strlen(env_var)) == 0)
+		{
+			result = strchr(envp[i], '=');
+			if (result)
+			{
+				result++; // skip '=' sign
+				return (result);
+			}
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+void strncpy_until_char(char *dest, const char *src, char stop_char)
+{
+    while (*src != '\0' && *src != stop_char)
+	{
+        *dest = *src;
+        dest++; 
+        src++;
+    }
+    *dest = '\0';
+}

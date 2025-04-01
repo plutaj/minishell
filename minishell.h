@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/03/30 18:26:04 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/04/01 18:55:20 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-typedef struct s_command
+typedef struct s_data
 {
-    char *command;
-    t_command  *next;
-}               t_command; 
+	char	**env_var;
+}				t_data;
 
 /* --- main.c --- */
-void    commands(char *input);
-void    parse_data(char *input, t_command *commands);
-
-/* --- utils.c --- */
-int         ft_strcmp(const char *str1, const char *str2);
-int         ft_strncmp(const char *s1, const char *s2, int n);
-t_command   *create_commands();
-
-/* --- commands_1.c --- */
+void	alloc_init_data(t_data *data, char **envp);
+int		get_len_of_2d_array(char **array);
+char	*is_env_var(char *input, char **envp);
+void	strncpy_until_char(char *dest, const char *src, char stop_char);
