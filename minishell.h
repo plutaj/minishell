@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/01 18:55:20 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/20 18:10:22 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,65 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include "libft/libft.h"
+
+typedef struct s_data		t_data;
+typedef struct s_token		t_token;
+typedef enum e_token_type	t_token_type;
+
+/* --- tokens --- */
+
+typedef enum e_token_type
+{
+    TOKEN_WORD,             // Command or argument: echo, ls, -l, /home, etc.
+    TOKEN_PIPE,             // |
+    TOKEN_REDIR_OUT,        // >
+    TOKEN_REDIR_OUT_APPEND, // >>
+    TOKEN_REDIR_IN,         // <
+    TOKEN_HEREDOC,          // <<
+    TOKEN_AND,              // &&
+    TOKEN_OR,               // ||
+    TOKEN_OPEN_PAREN,       // (
+    TOKEN_CLOSE_PAREN,      // )
+    TOKEN_NEWLINE,          // \n or end of input (optional, for parsing convenience)
+    TOKEN_EOF,              // End of input/file
+    TOKEN_INVALID           // Something unrecognized (good for error handling)
+}   				t_token_type;
+
+/* --- structs --- */
+typedef struct s_token
+{
+	int				id;
+	char 			*value;
+	t_token_type	type;
+	t_token			*next;
+}				t_token;
 
 typedef struct s_data
 {
 	char	**env_var;
+	char	*input;
+	char	**cmd_line;
+	t_token	*cmd_list;
 }				t_data;
 
-/* --- main.c --- */
-void	alloc_init_data(t_data *data, char **envp);
-int		get_len_of_2d_array(char **array);
-char	*is_env_var(char *input, char **envp);
-void	strncpy_until_char(char *dest, const char *src, char stop_char);
+/* --- minishell.c --- */
+void			*lexer(t_data *data);
+void			set_data_to_default(t_data *data);
+
+/* --- enviromentals.c --- */
+void			init_data(t_data *data);
+int				get_len_of_2d_array(char **array);
+char			*is_env_var(char *input, char **envp);
+void 			strncpy_until_char(char *dest, const char *src, char stop_char);
+
+/* --- built_ins.c --- */
+
+
+/* --- edge_cases.c --- */
+int				check_for_quotes(t_data *data);
+
+/* --- create_command_list.c --- */
+void			create_command_list(t_data *data);
+int				create_command_list2(int n, t_token *new, t_data *data, t_token *current);
+t_token_type	get_token_type(const char *str);

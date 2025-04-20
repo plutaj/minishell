@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+         #
+#    By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/30 16:06:32 by jozefpluta        #+#    #+#              #
-#    Updated: 2025/03/30 16:22:24 by jozefpluta       ###   ########.fr        #
+#    Updated: 2025/04/20 17:47:00 by jpluta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,28 +14,43 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -lreadline
-SRC = main.c utils.c commands_1.c
+SRC = \
+minishell.c \
+libft/ft_split/ft_split.c \
+enviromentals.c built_ins.c \
+edge_cases.c \
+create_command_list.c \
+
 OBJ = $(SRC:.c=.o)
+
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
 EXEC = minishell
 
 # Default target
-all: $(EXEC)
+all: $(LIBFT) $(EXEC)
 
 # Link object files to create the executable
 $(EXEC): $(OBJ)
-	$(CC) $(OBJ) $(LDFLAGS) -o $(EXEC)
+	$(CC) $(OBJ) $(LIBFT) $(LDFLAGS) -o $(EXEC)
 
 # Compile .c files into .o files
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
 # Clean up generated files
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -f $(OBJ)
+	make -C $(LIBFT_DIR) clean
 
 # Remove everything (clean + remove executable)
 fclean: clean
 	rm -f $(EXEC)
+	make -C $(LIBFT_DIR) fclean
 
 # Rebuild everything
 re: fclean all

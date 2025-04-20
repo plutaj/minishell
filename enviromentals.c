@@ -1,64 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   enviromentals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/01 19:22:53 by jpluta           ###   ########.fr       */
+/*   Created: 2025/04/19 15:09:04 by jpluta            #+#    #+#             */
+/*   Updated: 2025/04/20 17:10:01 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int main(int argc, char **argv, char **envp)
-{
-	t_data	data;
-	char	*input;
-	
-	if (argc != 1)
-		return (printf("Error: Unexpected input.\n"));
-	alloc_init_data(&data, envp);
-	while (1)
-	{
-		input = readline("minishell> ");
-		if (strcmp(input, "exit") == 0)
-		{
-			printf("Exiting...\n");
-			exit(0);
-		}
-		else if (strchr(input, '$'))
-		{
-			if (is_env_var(strchr(input, '$'), data.env_var))
-				printf("minishell> %s\n", is_env_var(strchr(input, '$'), data.env_var));
-		}
-		free (input);
-	}
-    return (0);
-}
-
-void	alloc_init_data(t_data *data, char **envp)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = get_len_of_2d_array(envp);
-	data->env_var = (char **)malloc(sizeof(char *) * (len + 1));
-	while (envp[i])
-	{
-		if (!envp[i])
-		{
-			printf("Error: Malloc in *alloc_init_data envp[%d]* failed.\n", i);
-			exit(1);
-		}
-		data->env_var[i] = (char *)malloc(strlen(envp[i]) + 1);
-		strcpy(data->env_var[i], envp[i]);
-		i++;
-	}
-	data->env_var[i] = NULL;
-}
 
 int	get_len_of_2d_array(char **array)
 {
