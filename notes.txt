@@ -6,10 +6,11 @@
 #    By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 16:22:23 by jpluta            #+#    #+#              #
-#    Updated: 2025/04/21 16:31:09 by jpluta           ###   ########.fr        #
+#    Updated: 2025/04/21 17:41:34 by jpluta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 1. Realloc in cmd_ls(); and more forbidden functions
 2. In compare(); function is forbidden function
-
+3. Realloc in set_env_var();
+4. 

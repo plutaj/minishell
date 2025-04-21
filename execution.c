@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:56:33 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 16:00:13 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 18:01:38 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,19 @@ void	is_cd_pwd_ls_exit(t_data *data)
 		{
 			cmd_pwd(data);
 		}
-		if (ft_strcmp(cmd_list->value, "exit") == 0)
+		else if (ft_strcmp(cmd_list->value, "exit") == 0)
 		{
 			cmd_exit();
 		}
-		if (ft_strcmp(cmd_list->value, "ls") == 0)
+		else if (ft_strcmp(cmd_list->value, "ls") == 0)
 		{
 			cmd_ls(data->current_path);
 		}
+		else if (ft_strcmp(cmd_list->value, "env") == 0)
+		{
+			print_env(data->env);
+		}
+		
 		cmd_list = cmd_list->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/21 17:03:56 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 18:10:50 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_token
 /* This structure holds all general data about a shell */
 typedef struct s_data
 {
-	char	**env_var;
+	char	**env;
 	char	*input;
 	char	**cmd_line;
 	char	*current_path;
@@ -64,9 +64,15 @@ typedef struct s_data
 void			lexer(t_data *data);
 
 /* --- enviromentals.c --- */
+char			**copy_envp(char **envp);
 int				get_len_of_2d_array(char **array);
 char			*is_env_var(char *input, char **envp);
-void 			strncpy_until_char(char *dest, const char *src, char stop_char);
+void			strncpy_until_char(char *dest, const char *src, char stop_char);
+void			print_env(char **envp);
+void			set_env_var(char ***envp, const char *var_name, const char *var_value);
+// int				get_len_of_2d_array(char **array);
+// char			*is_env_var(char *input, char **envp);
+// void 			strncpy_until_char(char *dest, const char *src, char stop_char);
 
 /* --- built_ins.c --- */
 void			cmd_pwd(t_data *data);
@@ -75,7 +81,7 @@ void			cmd_exit();
 void			cmd_ls(const char *path);
 
 /* --- t_data_utils.c --- */
-void			init_data(t_data *data);
+void			init_data(t_data *data, char **envp);
 void			get_path(t_data *data);
 void			set_data_to_default(t_data *data);
 

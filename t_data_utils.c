@@ -6,16 +6,16 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:41:33 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 14:41:59 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 17:58:47 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // initialize data for general data structure 
-void	init_data(t_data *data)
+void	init_data(t_data *data, char **envp)
 {
-	data->env_var = NULL;
+	data->env = copy_envp(envp); // set a env var 2d array
 	data->input = NULL;
 	data->cmd_line = NULL;
 	get_path(data); // set a current path in data struct

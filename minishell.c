@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/21 15:20:17 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 17:48:33 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ const char *token_type_to_string[] = {
     "TOKEN_INVALID"           // 12
 };
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	if (argc != 1)
 		return (printf("Error: Unexpected input.\n"));
 	// Initializing all data like PATH, ENV and so ... rest to NULL
-	init_data(&data); // add envp
+	init_data(&data, envp);
 	while (1)
 	{
 		data.input = readline("minishell$ ");
