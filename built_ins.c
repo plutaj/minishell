@@ -3,19 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:12:09 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 17:03:43 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 20:36:45 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void	cmd_echo()
-// {
-	
-// }
+void	cmd_echo(t_token *cmd_list)
+{
+    if (cmd_list->next)
+    {
+        cmd_list = cmd_list->next;
+        if (ft_strcmp(cmd_list->value, "-n") == 0)
+        {
+            printf("\n");
+            if (cmd_list->next)
+                cmd_list = cmd_list->next;
+        }
+    }
+    else
+        return ;
+    while (cmd_list)
+    {
+        printf("%s ", cmd_list->value);
+        cmd_list = cmd_list->next;
+    }
+    printf("\n");
+}
 
 // void	cmd_cd(t_data *data)
 // {

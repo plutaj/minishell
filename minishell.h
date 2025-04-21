@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/21 18:10:50 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 20:01:41 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			set_env_var(char ***envp, const char *var_name, const char *var_value);
 /* --- built_ins.c --- */
 void			cmd_pwd(t_data *data);
 void			cmd_exit();
+void	        cmd_echo(t_token *cmd_list);
 // void			cmd_cd(t_data *data);
 void			cmd_ls(const char *path);
 

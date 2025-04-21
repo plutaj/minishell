@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/21 17:48:33 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 20:38:31 by jozefpluta       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int main(int argc, char **argv, char **envp)
 
 void	lexer(t_data *data)
 {
-	int i;
+	// int i;
 
-	i = 0;
+	// i = 0;
 	if (!check_for_quotes(data))
 	{
 		printf("quote>\n");
@@ -65,16 +65,17 @@ void	lexer(t_data *data)
 	create_command_list(data);
 	
 	// just for check if storing correct data and token types
-	// t_token *cmd_list;
-	// cmd_list = data->cmd_list;
+	t_token *cmd_list;
+	cmd_list = data->cmd_list;
 	// printf("CURRENT PATH: %s\n", data->current_path);
-	// while (cmd_list)
-	// {
-	// 	printf("ID: %d\nVALUE: %s\nTOKEN: %s\n", cmd_list->id, cmd_list->value, token_type_to_string[cmd_list->type]);
-	// 	cmd_list = cmd_list->next;
-	// }
-	// return (NULL);
+	while (cmd_list)
+	{
+		printf("ID: %d\nVALUE: %s\nTOKEN: %s\n", cmd_list->id, cmd_list->value, token_type_to_string[cmd_list->type]);
+		cmd_list = cmd_list->next;
+	}
+	// just for check if storing correct data and token types
 	is_cd_pwd_ls_exit(data);
+	set_data_to_default(data);
 }
 
 
