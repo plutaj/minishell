@@ -6,13 +6,15 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/20 18:10:22 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 17:03:56 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <dirent.h>
+#include <sys/stat.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
@@ -22,7 +24,6 @@ typedef struct s_token		t_token;
 typedef enum e_token_type	t_token_type;
 
 /* --- tokens --- */
-
 typedef enum e_token_type
 {
     TOKEN_WORD,             // Command or argument: echo, ls, -l, /home, etc.
@@ -49,26 +50,34 @@ typedef struct s_token
 	t_token			*next;
 }				t_token;
 
+/* This structure holds all general data about a shell */
 typedef struct s_data
 {
 	char	**env_var;
 	char	*input;
 	char	**cmd_line;
+	char	*current_path;
 	t_token	*cmd_list;
 }				t_data;
 
 /* --- minishell.c --- */
-void			*lexer(t_data *data);
-void			set_data_to_default(t_data *data);
+void			lexer(t_data *data);
 
 /* --- enviromentals.c --- */
-void			init_data(t_data *data);
 int				get_len_of_2d_array(char **array);
 char			*is_env_var(char *input, char **envp);
 void 			strncpy_until_char(char *dest, const char *src, char stop_char);
 
 /* --- built_ins.c --- */
+void			cmd_pwd(t_data *data);
+void			cmd_exit();
+// void			cmd_cd(t_data *data);
+void			cmd_ls(const char *path);
 
+/* --- t_data_utils.c --- */
+void			init_data(t_data *data);
+void			get_path(t_data *data);
+void			set_data_to_default(t_data *data);
 
 /* --- edge_cases.c --- */
 int				check_for_quotes(t_data *data);
@@ -77,3 +86,10 @@ int				check_for_quotes(t_data *data);
 void			create_command_list(t_data *data);
 int				create_command_list2(int n, t_token *new, t_data *data, t_token *current);
 t_token_type	get_token_type(const char *str);
+
+/* --- execution.c --- */
+void			is_cd_pwd_ls_exit(t_data *data);
+
+/* --- cmd_ls_utils.c --- */
+int				get_max_len(char **entries, int count);
+int				compare(const void *a, const void *b);

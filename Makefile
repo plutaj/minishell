@@ -6,7 +6,7 @@
 #    By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/30 16:06:32 by jozefpluta        #+#    #+#              #
-#    Updated: 2025/04/20 17:47:00 by jpluta           ###   ########.fr        #
+#    Updated: 2025/04/21 16:33:38 by jpluta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ libft/ft_split/ft_split.c \
 enviromentals.c built_ins.c \
 edge_cases.c \
 create_command_list.c \
+t_data_utils.c \
+execution.c \
+cmd_ls_utils.c \
 
 OBJ = $(SRC:.c=.o)
 

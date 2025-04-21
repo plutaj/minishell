@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 15:38:44 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/20 15:43:19 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 15:11:34 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int ft_strcmp(const char *str1, const char *str2)
         str1++;
         str2++;
     }
-
     // If both strings ended (i.e., null-terminator reached), return the difference
     return (unsigned char)*str1 - (unsigned char)*str2;
 }

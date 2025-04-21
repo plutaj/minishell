@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 13:57:55 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:14 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 14:44:53 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // This function will go through whole cmd-line and check if there is 
 // even num of single or double quotes '' "";
-
 int	check_for_quotes(t_data *data)
 {
 	const char	*line;

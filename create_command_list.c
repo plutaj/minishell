@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:46:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/20 18:27:07 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 13:49:30 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	create_command_list(t_data *data)
 	new->value = data->cmd_line[n];
 	new->type = get_token_type(data->cmd_line[n]);
 	new->next = NULL;
+	data->cmd_list = new;
 	current = new;
 	n++;
 	if (!create_command_list2(n, new, data, current))

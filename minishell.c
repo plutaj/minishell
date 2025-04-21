@@ -6,12 +6,13 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/20 18:18:16 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/21 15:20:17 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* Only temporarry for printing type of tokens */
 const char *token_type_to_string[] = {
     "TOKEN_WORD",             // 0
     "TOKEN_PIPE",             // 1
@@ -36,6 +37,7 @@ int main(int argc, char **argv)
 	(void)argv;
 	if (argc != 1)
 		return (printf("Error: Unexpected input.\n"));
+	// Initializing all data like PATH, ENV and so ... rest to NULL
 	init_data(&data); // add envp
 	while (1)
 	{
@@ -47,7 +49,7 @@ int main(int argc, char **argv)
     return (0);
 }
 
-void	*lexer(t_data *data)
+void	lexer(t_data *data)
 {
 	int i;
 
@@ -56,66 +58,23 @@ void	*lexer(t_data *data)
 	{
 		printf("quote>\n");
 		set_data_to_default(data);
-		return (NULL);
+		return ;
 	}
+	// split line to 2d array 
 	data->cmd_line = ft_split(data->input, ' ');
-	// while (data->cmd_line[i])
-	// {
-	// 	printf("|%s|\n", data->cmd_line[i]);
-	// 	i++;
-	// }
 	create_command_list(data);
-	t_token *cmd_list;
-	cmd_list = data->cmd_list;
-	while (cmd_list)
-	{
-		printf("ID: %d\nVALUE: %s\nTOKEN: %s\n", cmd_list->id, cmd_list->value, token_type_to_string[cmd_list->type]);
-		cmd_list = cmd_list->next;
-	}
-	return (NULL);
-}
-
-void	init_data(t_data *data)
-{
-	data->env_var = NULL;
-	data->input = NULL;
-	data->cmd_line = NULL;
-	data->cmd_list = NULL;
-}
-
-void	set_data_to_default(t_data *data)
-{
-	int i;
-
-	i = 0;
-	if (data->input)
-	{
-		free (data->input);
-		data->input = NULL;
-	}
-	if (data->cmd_line)
-	{
-		while (data->cmd_line[i])
-		{
-			free(data->cmd_line[i]);
-			data->cmd_line[i] = NULL;
-			i++;
-		}
-		free (data->cmd_line);
-		data->cmd_line = NULL;
-	}
-	// if (*(data->cmd_line))
+	
+	// just for check if storing correct data and token types
+	// t_token *cmd_list;
+	// cmd_list = data->cmd_list;
+	// printf("CURRENT PATH: %s\n", data->current_path);
+	// while (cmd_list)
 	// {
-	// 	free (data->cmd_line);
-	// 	data->cmd_line = NULL;
+	// 	printf("ID: %d\nVALUE: %s\nTOKEN: %s\n", cmd_list->id, cmd_list->value, token_type_to_string[cmd_list->type]);
+	// 	cmd_list = cmd_list->next;
 	// }
+	// return (NULL);
+	is_cd_pwd_ls_exit(data);
 }
-// 	if (data->cmd_line)
-// 	{
-// 		while (data->cmd_line[i])
-// 			free(data->cmd_line[i++]);
-// 		free (data->cmd_line);
-// 		data->cmd_line = NULL;
-// 	}
-// }
+
 
