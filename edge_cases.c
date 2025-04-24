@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 13:57:55 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 17:37:31 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:36:28 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	free_data(t_data *data)
         i++;
     }
     free(data->env);
+	data->env = NULL;
+	if (data->current_path)
+	{
+		free(data->current_path);
+		data->current_path = NULL;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/21 20:01:41 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/04/24 18:37:10 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	char	*input;
 	char	**cmd_line;
 	char	*current_path;
+	t_token *head_cmd_list;
 	t_token	*cmd_list;
 }				t_data;
 
@@ -76,10 +77,12 @@ void			set_env_var(char ***envp, const char *var_name, const char *var_value);
 
 /* --- built_ins.c --- */
 void			cmd_pwd(t_data *data);
-void			cmd_exit();
-void	        cmd_echo(t_token *cmd_list);
-// void			cmd_cd(t_data *data);
+void			cmd_exit(t_data *data);
+void	        cmd_echo(t_data *data);
+void			cmd_cd(t_data *data);
 void			cmd_ls(const char *path);
+int				list_directory_contents(t_data *data, const char *path);
+
 
 /* --- t_data_utils.c --- */
 void			init_data(t_data *data, char **envp);
@@ -88,6 +91,7 @@ void			set_data_to_default(t_data *data);
 
 /* --- edge_cases.c --- */
 int				check_for_quotes(t_data *data);
+void			free_data(t_data *data);
 
 /* --- create_command_list.c --- */
 void			create_command_list(t_data *data);
@@ -100,3 +104,7 @@ void			is_cd_pwd_ls_exit(t_data *data);
 /* --- cmd_ls_utils.c --- */
 int				get_max_len(char **entries, int count);
 int				compare(const void *a, const void *b);
+
+/* --- echo_utils.c --- */
+void			cmd_echo_exec(t_data *data, int is_newline);
+// void	check_special_cases(t_data *data)

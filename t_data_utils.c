@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_data_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jozefpluta <jozefpluta@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:41:33 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 20:31:13 by jozefpluta       ###   ########.fr       */
+/*   Updated: 2025/04/24 16:35:33 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,15 @@ void	set_data_to_default(t_data *data)
 	t_token *temp;
 
 	i = 0;
-	temp = data->cmd_list;
-	while (data->cmd_list)
+	temp = data->head_cmd_list;
+	while (data->head_cmd_list)
 	{
-		temp = data->cmd_list->next;
-		free(data->cmd_list);
-		data->cmd_list = temp;
+		temp = data->head_cmd_list->next;
+		free(data->head_cmd_list);
+		data->head_cmd_list = temp;
 	}
+	data->head_cmd_list = NULL;
+	data->cmd_list = NULL;
 	if (data->input)
 	{
 		free (data->input);
