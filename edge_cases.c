@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 13:57:55 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/24 17:36:28 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:40:24 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int	check_for_quotes(t_data *data)
 	if (single_quotes % 2 == 1 || double_quotes % 2 == 1)
 		return (0);
 	return (1);
+}
+
+void	free_2d_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
 
 void	free_data(t_data *data)

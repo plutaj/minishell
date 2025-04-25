@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/24 18:37:10 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/25 18:43:28 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,7 @@ void			set_env_var(char ***envp, const char *var_name, const char *var_value);
 void			cmd_pwd(t_data *data);
 void			cmd_exit(t_data *data);
 void	        cmd_echo(t_data *data);
-void			cmd_cd(t_data *data);
 void			cmd_ls(const char *path);
-int				list_directory_contents(t_data *data, const char *path);
-
 
 /* --- t_data_utils.c --- */
 void			init_data(t_data *data, char **envp);
@@ -92,6 +89,7 @@ void			set_data_to_default(t_data *data);
 /* --- edge_cases.c --- */
 int				check_for_quotes(t_data *data);
 void			free_data(t_data *data);
+void			free_2d_array(char **arr);
 
 /* --- create_command_list.c --- */
 void			create_command_list(t_data *data);
@@ -108,3 +106,10 @@ int				compare(const void *a, const void *b);
 /* --- echo_utils.c --- */
 void			cmd_echo_exec(t_data *data, int is_newline);
 // void	check_special_cases(t_data *data)
+
+/* ---- cd_utils.c --- */
+void			cmd_cd(t_data *data);
+void			cmd_cd_dir(t_data *data);
+int				count_slash(char *str);
+int				list_directory_contents(char *str, const char *path);
+char			*append_char_to_str(char *str, char c);

@@ -6,7 +6,7 @@
 #    By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/30 16:06:32 by jozefpluta        #+#    #+#              #
-#    Updated: 2025/04/24 18:40:17 by jpluta           ###   ########.fr        #
+#    Updated: 2025/04/25 17:05:15 by jpluta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ t_data_utils.c \
 execution.c \
 cmd_ls_utils.c \
 echo_utils.c \
+cd_utils.c \
 
 OBJ = $(SRC:.c=.o)
 
