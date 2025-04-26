@@ -6,7 +6,7 @@
 #    By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/21 16:22:23 by jpluta            #+#    #+#              #
-#    Updated: 2025/04/24 17:49:03 by jpluta           ###   ########.fr        #
+#    Updated: 2025/04/26 16:05:37 by jpluta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,17 @@ for runing valgrind that ignores leaks from readline()
 valgrind --suppressions=readline.supp --leak-check=full
 
 TO DO:
-Next step is to handle all cases that may occur in echo
+Continue working on echo, since now "echo -n $VAR word" working
 
 1. Realloc in cmd_ls(); and more forbidden functions
 2. In compare(); function is forbidden function
 3. Realloc in set_env_var();
-4. 
+
+
+DONE
+1. cd (cd, cd .., cd dir)
+2. pwd
+3. exit
+4. working ls (but not ideal formatting)
+5. enviromentals
+6. started echo

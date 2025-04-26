@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 14:56:33 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/25 17:16:30 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/26 14:00:54 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	is_cd_pwd_ls_exit(t_data *data)
 		{
 			printf("%s: command not found\n", data->cmd_list->value);
 		}
-		data->cmd_list = data->cmd_list->next;
+		if (data->cmd_list)
+			data->cmd_list = data->cmd_list->next;
 	}
 }

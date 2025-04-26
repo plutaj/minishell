@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:08 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/24 16:29:42 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/26 14:57:56 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,9 @@ const char *token_type_to_string[] = {
     "TOKEN_REDIR_OUT_APPEND", // 3
     "TOKEN_REDIR_IN",         // 4
     "TOKEN_HEREDOC",          // 5
-    "TOKEN_AND",              // 6
-    "TOKEN_OR",               // 7
-    "TOKEN_OPEN_PAREN",       // 8
-    "TOKEN_CLOSE_PAREN",      // 9
-    "TOKEN_NEWLINE",          // 10
-    "TOKEN_EOF",              // 11
-    "TOKEN_INVALID"           // 12
+    "TOKEN_NEWLINE",          // 6
+    "TOKEN_EOF",              // 7
+    "TOKEN_INVALID"           // 8
 };
 
 int main(int argc, char **argv, char **envp)

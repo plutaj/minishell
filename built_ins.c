@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 16:12:09 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/25 17:37:55 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/26 12:57:05 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,6 @@ void	cmd_echo(t_data *data)
     else if (data->cmd_list)
         cmd_echo_exec(data, 1);
 }
-
-// void	cmd_cd(t_data *data)
-// {
-// 	t_token	*cmd_list;
-// 	// char	path[256];
-
-// 	cmd_list = data->cmd_list;
-// 	if (ft_strcmp(data->cmd_list->value, "cd") == 0 && !data->cmd_list->next)
-// 	{
-// 		chdir(is_env_var("$HOME", data->env));
-// 		data->current_path = is_env_var("$HOME", data->env);
-// 	}
-// 	else if (ft_strcmp(data->cmd_list->value, "cd"))
-// 	{
-// 		if (chdir(ft_strjoin(data->current_path, data->cmd_list->next->value)) == 0)
-// 		{
-// 			data->current_path = ft_strjoin(data->current_path, data->cmd_list->next->value);
-// 			data->cmd_list = data->cmd_list->next;
-// 		}
-// 	}
-// 	// else if (data->cmd_list->value == "cd" && data->cmd_list->next->value == "..")
-// 	// {
-		
-// 	// }
-// }
 
 void	cmd_pwd(t_data *data)
 {

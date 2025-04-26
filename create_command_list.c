@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 14:46:46 by jpluta            #+#    #+#             */
-/*   Updated: 2025/04/21 13:49:30 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/26 14:58:37 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,6 @@ t_token_type get_token_type(const char *str)
 		return TOKEN_HEREDOC;
 	else if (ft_strcmp(str, "<") == 0)
 		return TOKEN_REDIR_IN;
-	else if (ft_strcmp(str, "&&") == 0)
-		return TOKEN_AND;
-	else if (ft_strcmp(str, "||") == 0)
-		return TOKEN_OR;
-	else if (ft_strcmp(str, "(") == 0)
-		return TOKEN_OPEN_PAREN;
-	else if (ft_strcmp(str, ")") == 0)
-		return TOKEN_CLOSE_PAREN;
 	else if (ft_strcmp(str, "\n") == 0)
 		return TOKEN_NEWLINE;
 	else if (ft_strcmp(str, "") == 0)

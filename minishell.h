@@ -6,7 +6,7 @@
 /*   By: jpluta <jpluta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 15:28:39 by jozefpluta        #+#    #+#             */
-/*   Updated: 2025/04/25 18:43:28 by jpluta           ###   ########.fr       */
+/*   Updated: 2025/04/26 15:37:23 by jpluta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ typedef enum e_token_type
     TOKEN_REDIR_OUT_APPEND, // >>
     TOKEN_REDIR_IN,         // <
     TOKEN_HEREDOC,          // <<
-    TOKEN_AND,              // &&
-    TOKEN_OR,               // ||
-    TOKEN_OPEN_PAREN,       // (
-    TOKEN_CLOSE_PAREN,      // )
     TOKEN_NEWLINE,          // \n or end of input (optional, for parsing convenience)
     TOKEN_EOF,              // End of input/file
     TOKEN_INVALID           // Something unrecognized (good for error handling)
@@ -105,7 +101,9 @@ int				compare(const void *a, const void *b);
 
 /* --- echo_utils.c --- */
 void			cmd_echo_exec(t_data *data, int is_newline);
-// void	check_special_cases(t_data *data)
+char			*convert_to_string(t_data *data);
+int				dollar_sign(char *str);
+// char			*get_str_after_echo(t_data *data, int is_newline);
 
 /* ---- cd_utils.c --- */
 void			cmd_cd(t_data *data);
